@@ -1,0 +1,13 @@
+.main {
+    position: relative;
+    background-color: #DADBD3;
+    width: 100%;
+    height: 100%;
+
+    .main__body {
+        z-index: 100;
+        width: 70vw;
+        height: 95vh;
+        background-color: #EDEDED;
+    }
+}
