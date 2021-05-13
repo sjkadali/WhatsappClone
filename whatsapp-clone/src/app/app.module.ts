@@ -17,6 +17,10 @@ import { MaterialModule } from './shared/material.module';
 import { AppRoutingModule } from './app-routing.module';
 import { LoginComponent } from './components/login/login.component';
 import { FormsModule } from '@angular/forms';
+import { AngularFireModule } from '@angular/fire';
+import { AngularFireAuthModule } from '@angular/fire/auth';
+import { AngularFirestoreModule } from '@angular/fire/firestore'
+import { environment } from 'src/environments/environment';
 
 @NgModule({
   declarations: [
@@ -34,11 +38,11 @@ import { FormsModule } from '@angular/forms';
     AppRoutingModule,
     RouterModule,
     BrowserAnimationsModule,
-    MaterialModule,
-    MatButtonModule,
-    MatMenuModule,
+    MaterialModule,    
     FormsModule,
-    MatCardModule
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFireAuthModule,
+    AngularFirestoreModule  
   ],
   providers: [],
   bootstrap: [AppComponent]

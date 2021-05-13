@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "wa-clone-e75fa": {
+      "hosting": {
+        "whatsapp-clone": [
+          "wa-clone-e75fa"
+        ]
+      }
+    }
+  }
+}
