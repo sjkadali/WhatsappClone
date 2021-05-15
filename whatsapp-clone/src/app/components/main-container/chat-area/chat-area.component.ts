@@ -33,7 +33,7 @@ export class ChatAreaComponent implements OnInit {
     const {message} = form.value;
     form.resetForm();
 
-    this.afs.collection('rooms').doc(this.paramValue).collection('message').add({
+    this.afs.collection('rooms').doc(this.paramValue).collection('messages').add({
       message,
       user_id: this.commonService.getUser().uid,
       name: this.commonService.getUser().displayName,
