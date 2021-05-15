@@ -14,6 +14,7 @@ export class ChatAreaComponent implements OnInit {
   @Input() randomSeed: string;
   subs: Subscription;
   paramValue: string;
+  roomName: string;
 
   constructor(private commonService: CommonService,
               private afs: AngularFirestore) { }
@@ -29,7 +30,6 @@ export class ChatAreaComponent implements OnInit {
     if (form.invalid) {
       return;
     }
-
     const {message} = form.value;
     form.resetForm();
 
@@ -39,5 +39,11 @@ export class ChatAreaComponent implements OnInit {
       name: this.commonService.getUser().displayName,
       time: firebase.firestore.FieldValue.serverTimestamp()
     });
+  }
+
+  chatData(ev):void {
+    if (ev.chatData !== undefined) {
+      ev.chatData.subscribe(roomName => this.roomName = roomName);
+    }
   }
 }
