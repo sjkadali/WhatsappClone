@@ -44,7 +44,30 @@ export class SidebarComponent implements OnInit, OnDestroy {
   }
 
   onFormSubmit(form: NgForm):void {
-    console.log(form.value.search);
+    const {search} =form.value;
+    
+    this.subs.push(this.afs.collection<RoomData>('rooms')
+    .valueChanges()
+    .pipe(
+      map((data: RoomData[]) => data.map(s => s.name?.toLowerCase() === search.toLowerCase()))
+    ).subscribe(
+      dataValue => {
+        dataValue = dataValue.filter(s => s === true);
+        if (dataValue.length > 0) {
+          alert(dataValue+ ', Sorry , the room already exists');
+          return;
+        } else {
+          if (search !== null && search !== '') {
+            this.afs.collection('rooms').add({
+              name: search
+            });
+          } else {
+            return;
+          }
+        }
+      }
+    ));
+    form.resetForm();
   }
 
   ngOnDestroy():void {
