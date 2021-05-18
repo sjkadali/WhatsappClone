@@ -43,9 +43,10 @@ export class CommonService {
     });
   }
 
-  logout():void {
+  async logout():Promise<void> {
     this.afAuth.auth.signOut().then(() => {
       localStorage.removeItem('user');
+      this.user = null;
       this.router.navigateByUrl('/login').then();
     });
   }
